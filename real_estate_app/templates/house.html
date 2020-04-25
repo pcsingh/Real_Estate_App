@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ url_for('static', filename='images/profile_pics/' + house.owner.user_image) }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ house.owner.username }} (Admin)</a>
+        <small class="text-muted">{{ house.date_added.strftime('%Y-%m-%d') }}</small>
+        {% if house.owner == current_user %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_house', house_id=house.id) }}">Update</a>
+            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('delete_house', house_id=house.id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h2 class="article-title">{{ house.name }}</h2>
+        <p class="article-content">{{ house.description }}</p>
+        <div style="margin-bottom: 7px, font-size: 14px, color: #333;">Type: <i>{{ house.house_type }}</i></div>
+        <div style='margin: 0, padding: 0px;'>
+            <p style="float:left;"><strong>Rs. {{ house.price }} Lac.</strong></p>
+        </div>
+      </div>
+      <img class="card-img-top" src="{{ url_for('static', filename='images/' + house.house_image) }}">
+    </div>
+  </div>
+{% endblock content %}
