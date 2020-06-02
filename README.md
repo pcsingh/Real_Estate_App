@@ -21,3 +21,5 @@ This is done at this file `real_estate_app/__init__.py`.
 <br/>
 <br/>
 After completing the above requirements you can run this command `python run.py` and the server will start running as localhost.
+
+<img src='front_page.png' />
