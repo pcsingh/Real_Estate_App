@@ -39,7 +39,7 @@ pycparser==2.20
 pyee==7.0.2
 pyfiglet==0.8.post1
 pyflakes==2.2.0
-Pygments==2.7.4
+Pygments==2.15.0
 PyMySQL==0.9.3
 pyppeteer==0.2.2
 python-dotenv==0.13.0
